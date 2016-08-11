@@ -1,0 +1,172 @@
+<!-- <div>
+	<h2> Ventana de paciente... coming soon </h2>
+	<h3> Bindings ok? {{testBinding}}</h3>
+	<h3> Patient id: {{patientId}}</h3>
+</div> -->
+
+
+<script type="text/ng-template" id="error-messages">		
+	<div ng-message="required">Campo Obligatorio</div>
+	<div ng-message="minlength"> Longitud mínima no alcanzada</div>
+	<div ng-message="pattern"> El patrón no es válido</div>
+	<div ng-message="dni">El DNI no es válid, la letra no casa con los números</div> // estao hace referencia a nuestra directiva dni
+</script>     <!--// Me defino una plantilla de generación de HTML (las directivas pueden hacer esto) para no tener que repetirlo luego en diferentes div y demás-->
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Nuevo Paciente</h2>  
+  </div>  
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div lc-validations-container>
+		    <form name="userForm" role="form" class="validation-form-style">
+		      <div class="col-xs-12">
+		        <div class="form-group">
+		          <label for="name">Nombre:</label>
+		          <input type="text" 
+		          		class="form-control" 
+		          		id="name"
+		          		name="name"
+		          		ng-model="patient.name"
+		          		ng-required="true"
+		          		lc-validation-bubble=""
+           				validation-friendly-name="User Name"/>								<!--Two-way binding, remember-->
+		      		<div class="row" style="color:maroon">
+		      			<div ng-messages="userForm.name.$error" ng-if="userForm.name.$dirty" ng-messages-include="error-messages">
+		      			</div>
+		      		</div>
+		        </div>
+		      </div>    
+
+		      <div class="col-xs-6">
+		        <div class="form-group">
+		          <label for="lastname">Primer Apellido:</label>
+		          <input type="text" 
+		          		class="form-control" 
+		          		id="lastname"
+		          		ng-model="patient.lastname"
+		          		ng-required
+		          		ng-minlength = "4"
+		          		name = "lastname"
+		          		/>
+		          	<div class="row" style="color:maroon">
+		      			<div ng-messages="userForm.lastname.$error" ng-if="userForm.lastname.$dirty" ng-messages-include="error-messages">
+		      				<div ng-message="minlength"> Me cargo el mensaje de error </div>
+		      			</div>
+		      		</div>
+		        </div>
+		      </div>    
+		      <div class="col-xs-6">
+		        <div class="form-group">
+		          <label for="lastname2">Segundo Apellido:</label>
+		          <input type="text" 
+		          		class="form-control" 
+		          		id="lastname2"
+		          		ng-model="patient.lastname2"/>
+		        </div>
+		      </div>    
+
+		      <div class="col-xs-3">
+		        <div class="form-group">
+		          <label for="gender">Sexo:</label>
+		          	<ul class="list-unstyled list-inline">
+		          		<li ng-repeat="gender in genders | orderBy: 'name'" >
+		          			<input type="radio" ng-model="patient.gender" ng-value="gender"/><span>{{gender.name}}</span>
+		          		</li>
+		          	<!-- 	<li>
+		          			<input type="radio" ng-model="patient.gender" ng-value="genders[1]"/><span>Mujer</span>
+		          		</li>
+		          		<li>
+		          			<input type="radio" ng-model="patient.gender" ng-value="genders[0]"/><span>Hombre</span>
+		          		</li> -->
+	<!-- 	          <input type="text" 
+		          		class="form-control" 
+		          		id="gender"
+		          		ng-model="patient.gender"/> -->
+		          	</ul>
+		        </div>
+		      </div>    
+
+		      <div class="col-xs-3">
+		        <div class="form-group">
+		          <label for="dni">DNI:</label>
+		          <input type="text" 
+		          		class="form-control" 
+		          		id="dni"
+		          		name="dni"
+		          		ng-required="true"
+		          		ng-model="patient.dni"
+		          		ng-pattern = "/^\d{8}[a-zA-Z]$/"
+		          		rc-dni=""
+		          		/>		<!--Se pueden poner condiciones en el ng-required. Decir que ng-required a secas o ng-required="" en versiones nuevas de angular es lo mismo que true-->
+		          	<div class="row" style="color:maroon">
+		      			<div ng-messages="userForm.dni.$error" ng-if="userForm.dni.$dirty" ng-messages-include="error-messages">
+		      				<div ng-message="pattern"> El DNI debe tener 8 números y una letra</div>
+		      			</div>
+		      		</div>
+		        </div>
+		      </div>
+
+
+		      <div class="col-xs-3">
+		      	<div class="form-group">
+		      		<label for="birthdate">Fecha de Nacimiento</label>    <!-- al hacer click, ponemos el flag de abrir el datepicker a true. Creo que es un flag que nos hemos hecho nosotros. Append-to-body es para que se añada el datepicker al body al hacer el pop-up, de forma que siempre se va a ver, no se va a salir fuera de la página. -->
+		      		<input ng-model="patient.birthdate"
+		      			class = "form-control"
+		      			type = "text"
+		      			id = "dueDate"
+		      			name = "dueDate"
+		      			datepicker-popup = "dd-MMMM-yyyy"
+		      			datepicker-append-to-body="true"
+		      			is-open="data.isOpen" 
+		      			ng-click="data.isOpen=true"
+		      			close-text = "Cerrar Ya!!"			
+		      			/>
+		      	</div>
+		      </div>
+
+				<!-- userForm es el valor que le hemos dado al formulario en el campo name de html. OJO: no es el id, es el name D: -->
+		      <button ng-click="consoleDebugPatientCommand()" ng-disabled="userForm.$pristine || userForm.$invalid" > Ver Paciente por Consola </button>
+
+			  <div class="col-xs-3">
+		        <div class="form-group">
+		          <label for="maritalStatus">Estado Civil:</label>
+		          <!-- <input type="text" class="form-control" id="maritalStatus" ng-model="patient.maritalStatus"/> -->
+		          <!-- El as viene a decir que lo que está a la derecha es el valor que se asigna, y el de la derecha es el que se ve en la vista -->
+		          <select type="text" 
+		          		class="form-control" 
+		          		id="maritalStatus" 
+		          		ng-model="patient.maritalStatus"
+		          		ng-options="maritalstatus.id as maritalstatus.name 
+		          				for maritalstatus 
+		          				in maritalStatuses">
+		          </select>
+		        </div>
+		      </div>  
+
+
+			<div class="col-xs-3">
+				<div class="form-group">
+					<label for="hospital">Hospital:</label>	<!-- Filtramos por lo que esté escrito en el view y ponemos un máximo de 8 entradas para autocompletar. También forzamos a que se elija una opción de la lista, nada de escribir lo que se quiera -->
+					<input type="text"
+							name="hospital"
+							class="form-control"
+							ng-model="patient.hospital"
+							typeahead="hospital as hospital.name for hospital in hospitals 
+										| filter:$viewValue  
+										| limitTo: 8"
+							typeahead-editable = 'false'
+							id="hospital"
+					/>
+				</div>
+			</div>
+
+		    </form>
+		</div>
+		<div lc-validation-summary=""></div>
+	</div>
+
+
+</div>

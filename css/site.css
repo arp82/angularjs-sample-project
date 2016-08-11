@@ -1,0 +1,5 @@
+/*<=validation styles>*/
+.validation-form-style input.ng-invalid.ng-dirty{		/*Si estamos en un input dentro de una clase validation style que sea ng-invalid y ng-dirty, se aplica el color rojo al campo*/
+	background-color:#FF0000;
+}
+/*<#validation styles>*/

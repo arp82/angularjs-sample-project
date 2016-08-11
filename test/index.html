@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- JQuery, not 100% needed for this sample but just to clarify one case -->
+  <script src="../lib/jquery/dist/jquery.min.js"></script>
+
+  <!-- jasmine -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/1.3.1/jasmine.js"></script>
+  <!-- jasmine's html reporting code and css -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/1.3.1/jasmine-html.js"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/jasmine/1.3.1/jasmine.css" rel="stylesheet" />
+  <!-- angular itself -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.js"></script>
+  <!-- angular's testing helpers -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular-mocks.js"></script>
+  
+  <!-- your angular app code -->
+  <script src="../src/app/directives/namespace.js"></script>
+  <script src="../src/app/directives/rcdni.js"></script>
+  <script src="mockDniController.js"></script>
+  
+  <!-- your Jasmine specs (tests) -->
+  <script src="rcdnispecs.js"></script>
+</head>
+
+<body>
+  <!-- bootstrap jasmine! -->
+  <script>
+  var jasmineEnv = jasmine.getEnv();
+  
+  // Tell it to add an Html Reporter
+  // this will add detailed HTML-formatted results
+  // for each spec ran.
+  jasmineEnv.addReporter(new jasmine.HtmlReporter());
+  
+  // Execute the tests!
+  jasmineEnv.execute();
+  </script>
+</body>
+
+
+</html>

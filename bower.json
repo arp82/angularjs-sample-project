@@ -1,0 +1,29 @@
+{
+  "name": "mProyectoAngular",
+  "version": "0.0.0",
+  "description": "mi proyecto",
+  "main": "main",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "angularjs": "~1.3.13",
+    "angular-route": "~1.3.13",
+    "ng-grid": "~2.0.14",
+    "ui-bootstrap": "~0.12.1",
+    "angular-bootstrap": "~0.12.1",
+    "angular-i18n": "~1.3.14",
+    "angular-messages": "~1.3.14",
+    "lc-validation-summary": "~0.2.2",
+    "jasmine": "~2.2.1",
+    "angular-mocks": "~1.3.14"
+  }
+}

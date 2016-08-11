@@ -1,0 +1,97 @@
+<!--<div class="container-fluid" ng-controller="PatientsController"> Esto lo quitamos porque con el route en app.config ya no hace falta-->
+<div class="container-fluid">
+	<!--Body-->
+	<div class="row">
+    <!-- #NewPatient -->
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-primary pull-right" ng-click="newPatientCommand()">
+        Nuevo Paciente
+      </button>
+    </div>
+    <!-- #NewPatient End -->
+
+		 <!-- SearchPanel -->
+      <div class="col-md-4 well">
+        <span class="glyphicon glyphicon-search"></span>&nbsp;Buscar Paciente
+        <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+        <div class="row">
+          <form role="form">
+            <div class="col-sm-6 col-md-12">
+              <div class="form-group">
+                <label for="lastname">Primer apellido:</label>
+                <input type="text" class="form-control" id="firstname"/>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-12">
+              <div class="form-group">
+                <label for="lastname2">Segundo apellido:</label>
+                <input type="text" class="form-control" id="lastname2"/>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-12">
+              <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" id="name"/>
+              </div>
+            </div>
+ 
+            <div class="col-sm-3 col-md-6">
+              <div class="form-group">
+                <label for="dni">DNI:</label>                              
+                <input type="text" class="form-control" id="dni"/>
+              </div>
+            </div>
+
+            <div class="col-sm-3 col-md-6">
+              <div class="form-group">
+                <label for="cip">CIP:</label>
+                <input type="select" class="form-control" id="cip"/>
+              </div>
+            </div>
+
+            <div class="col-sm-3 col-md-6">
+              <div class="form-group">
+                <label for="nssa">NSS:</label>                            
+                <input type="text" class="form-control" id="nssa"/>
+              </div>
+            </div>
+
+            <div class="col-sm-3 col-md-6">
+              <div class="form-group">                
+                <label for="nssb"> </label>                
+                <input type="text" class="form-control" id="nssb"/>
+              </div>
+            </div>
+
+            <div class="col-sm-12">            
+                <button type="submit" class="btn btn-primary pull-right">Buscar</button>                        
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- #SearchPanel -->
+	
+
+	<!--#-->
+	<div class="col-md-8">
+<!-- 		<table class="table table-hover">
+			<tr>
+                <th>Paciente(NHC)</th>
+                <th>CIP</th>
+                <th>NHC Hosp.</th>
+        		<th>DNI</th>
+      </tr>
+
+      <tr ng-repeat="patient in patients"> 
+              <td><a href="#/patient/{{patient.id}}">{{patient.name}}</a></td>
+              <td>{{patient.cip}}</td>
+              <td>{{patient.hosp}}</td>
+              <td>{{patient.dni}}</td>
+      </tr>
+		</table> -->
+    <div ng-grid="gridOptions" style="min-height:500px"></div>
+	</div>
+
+	</div>
+</div>

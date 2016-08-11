@@ -1,0 +1,1 @@
+var riatecui = angular.module('riatecui',[]); // Este no lleva la especificación de carpeta porque es genérico, ajeno a la aplicación, reutilizable por otras
